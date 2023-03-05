@@ -1,5 +1,6 @@
 package com.jimin.board.entity;
 
+import com.jimin.board.dto.SignUpDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +14,8 @@ import javax.persistence.Table;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "User")
-@Table(name = "User")
+@Entity(name = "user")
+@Table(name = "user")
 public class UserEntity {
 
     @Id
@@ -24,4 +25,12 @@ public class UserEntity {
     private String userPhoneNumber;
     private String userAddress;
     private String userProfile;
+
+    public UserEntity(SignUpDto dto) {
+        this.userEmail = dto.getUserEmail();
+        this.userPassword = dto.getUserPassword();
+        this.userNickname = dto.getUserNickname();
+        this.userAddress = dto.getUserAddress() + " " + dto.getUserAddressDetail();
+        this.userPhoneNumber = dto.getUserPhoneNumber();
+    }
 }
